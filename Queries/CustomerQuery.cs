@@ -6,7 +6,7 @@ namespace HotChocolateV14.Queries;
 [QueryType]
 public class CustomerQuery
 {
-    [UsePaging(IncludeTotalCount = true)]
+    [UsePaging(IncludeTotalCount = true,DefaultPageSize = 10000, MaxPageSize = 10000)]
     [UseProjection]
     [UseFiltering]
     [UseSorting]
