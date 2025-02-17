@@ -19,5 +19,9 @@ namespace HotChocolateV14.Entities
         [UseFiltering]
         [UseSorting]
         public virtual ICollection<Account> Accounts { get; set; }
+
+        [UseFiltering]
+        [UseSorting]
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }

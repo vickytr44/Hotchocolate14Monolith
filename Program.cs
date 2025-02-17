@@ -10,6 +10,7 @@ builder.Services
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IBillRepository, BillRepository>();
 
 builder.Services
     .AddGraphQLServer()
@@ -17,7 +18,8 @@ builder.Services
     .AddFiltering()
     .AddSorting()
     .AddProjections()
-    .AddPagingArguments();
+    .AddPagingArguments()
+    .ModifyCostOptions(o => o.EnforceCostLimits = false);
 
 var app = builder.Build();
 

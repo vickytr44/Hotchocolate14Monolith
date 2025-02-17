@@ -16,6 +16,10 @@ public class Account
     public int CustomerId { get; set; }
 
     public virtual Customer Customer { get; set; }
+
+    [UseFiltering]
+    [UseSorting]
+    public virtual ICollection<Bill> Bills { get; set; }
 }
 
 public enum AccountType
