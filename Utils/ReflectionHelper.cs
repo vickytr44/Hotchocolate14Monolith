@@ -18,10 +18,27 @@ public static class ReflectionHelper
         });
     }
 
+    public static IEnumerable<string> GetVirtualFields<T>()
+    {
+        return GetVirtualFieldNames<T>();
+    }
+
     public static List<AvailableEntity> GetRelatedEntities<T>()
     {
         var fields = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                                .Where(field => field.GetMethod != null && field.GetMethod.IsVirtual && !IsCollectionType(field.PropertyType));
+
+        return fields.Select(field => new AvailableEntity
+        {
+            Id = field.Name,
+            value = Enum.Parse<Entity>(field.Name).GetDescription()
+        }).ToList();
+    }
+
+    public static List<AvailableEntity> GetFilterEntities<T>()
+    {
+        var fields = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                               .Where(field => field.GetMethod != null && field.GetMethod.IsVirtual);
 
         return fields.Select(field => new AvailableEntity
         {
@@ -36,6 +53,14 @@ public static class ReflectionHelper
                                .Where(field => !field.GetMethod.IsVirtual);
 
         return fields.ToDictionary(field => field.Name, field => field.PropertyType.Name);
+    }
+
+    private static List<string> GetVirtualFieldNames<T>()
+    {
+        var fields = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                               .Where(field => field.GetMethod.IsVirtual);
+
+        return fields.Select(field => field.Name).ToList();
     }
 
     private static bool IsCollectionType(Type type)
