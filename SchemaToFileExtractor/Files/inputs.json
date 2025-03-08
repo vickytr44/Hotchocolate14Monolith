@@ -1,7 +1,7 @@
 {
   "AccountFilterInput": {
-    "and": [ "AccountFilterInput!" ],
-    "or": [ "AccountFilterInput!" ],
+    "and": "[AccountFilterInput!]",
+    "or": "[AccountFilterInput!]",
     "id": "IntOperationFilterInput",
     "number": "StringOperationFilterInput",
     "isActive": "BooleanOperationFilterInput",
@@ -21,12 +21,40 @@
   "AccountTypeOperationFilterInput": {
     "eq": "AccountType",
     "neq": "AccountType",
-    "in": [ "AccountType!" ],
-    "nin": [ "AccountType!" ]
+    "in": "[AccountType!]",
+    "nin": "[AccountType!]"
+  },
+  "AvailableEntityFilterInput": {
+    "and": "[AvailableEntityFilterInput!]",
+    "or": "[AvailableEntityFilterInput!]",
+    "id": "StringOperationFilterInput",
+    "value": "StringOperationFilterInput"
+  },
+  "AvailableEntitySortInput": {
+    "id": "SortEnumType",
+    "value": "SortEnumType"
+  },
+  "AvailableFieldFilterInput": {
+    "and": "[AvailableFieldFilterInput!]",
+    "or": "[AvailableFieldFilterInput!]",
+    "name": "StringOperationFilterInput",
+    "type": "StringOperationFilterInput"
+  },
+  "AvailableFieldSortInput": {
+    "name": "SortEnumType",
+    "type": "SortEnumType"
+  },
+  "AvailableOperatorFilterInput": {
+    "and": "[AvailableOperatorFilterInput!]",
+    "or": "[AvailableOperatorFilterInput!]",
+    "name": "StringOperationFilterInput"
+  },
+  "AvailableOperatorSortInput": {
+    "name": "SortEnumType"
   },
   "BillFilterInput": {
-    "and": [ "BillFilterInput!" ],
-    "or": [ "BillFilterInput!" ],
+    "and": "[BillFilterInput!]",
+    "or": "[BillFilterInput!]",
     "id": "IntOperationFilterInput",
     "number": "IntOperationFilterInput",
     "month": "MonthOperationFilterInput",
@@ -57,8 +85,8 @@
     "neq": "Boolean"
   },
   "CustomerFilterInput": {
-    "and": [ "CustomerFilterInput!" ],
-    "or": [ "CustomerFilterInput!" ],
+    "and": "[CustomerFilterInput!]",
+    "or": "[CustomerFilterInput!]",
     "id": "IntOperationFilterInput",
     "name": "StringOperationFilterInput",
     "identityNumber": "IntOperationFilterInput",
@@ -75,8 +103,8 @@
   "DateOperationFilterInput": {
     "eq": "Date",
     "neq": "Date",
-    "in": [ "Date" ],
-    "nin": [ "Date" ],
+    "in": "[Date]",
+    "nin": "[Date]",
     "gt": "Date",
     "ngt": "Date",
     "gte": "Date",
@@ -89,8 +117,8 @@
   "DecimalOperationFilterInput": {
     "eq": "Decimal",
     "neq": "Decimal",
-    "in": [ "Decimal" ],
-    "nin": [ "Decimal" ],
+    "in": "[Decimal]",
+    "nin": "[Decimal]",
     "gt": "Decimal",
     "ngt": "Decimal",
     "gte": "Decimal",
@@ -103,8 +131,8 @@
   "IntOperationFilterInput": {
     "eq": "Int",
     "neq": "Int",
-    "in": [ "Int" ],
-    "nin": [ "Int" ],
+    "in": "[Int]",
+    "nin": "[Int]",
     "gt": "Int",
     "ngt": "Int",
     "gte": "Int",
@@ -129,24 +157,24 @@
   "MonthOperationFilterInput": {
     "eq": "Month",
     "neq": "Month",
-    "in": [ "Month!" ],
-    "nin": [ "Month!" ]
+    "in": "[Month!]",
+    "nin": "[Month!]"
   },
   "StatusOperationFilterInput": {
     "eq": "Status",
     "neq": "Status",
-    "in": [ "Status!" ],
-    "nin": [ "Status!" ]
+    "in": "[Status!]",
+    "nin": "[Status!]"
   },
   "StringOperationFilterInput": {
-    "and": [ "StringOperationFilterInput!" ],
-    "or": [ "StringOperationFilterInput!" ],
+    "and": "[StringOperationFilterInput!]",
+    "or": "[StringOperationFilterInput!]",
     "eq": "String",
     "neq": "String",
     "contains": "String",
     "ncontains": "String",
-    "in": [ "String" ],
-    "nin": [ "String" ],
+    "in": "[String]",
+    "nin": "[String]",
     "startsWith": "String",
     "nstartsWith": "String",
     "endsWith": "String",

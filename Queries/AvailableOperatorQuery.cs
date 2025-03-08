@@ -13,9 +13,8 @@ public class AvailableOperatorQuery
     {
         var entityEnum = EnumExtensions.GetEnumValueFromDescription<Entity>(entity);
 
-        string filePath = ".\\Jsons\\inputs.json";
+        var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\inputs.json";
         string json = File.ReadAllText(filePath);
-
 
         return entityEnum switch
         {

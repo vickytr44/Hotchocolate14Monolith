@@ -8,6 +8,8 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\";
+
 builder.Services.ResolveRepositoryDependencies();
 
 var schema = (await (builder.Services
@@ -24,7 +26,7 @@ Console.WriteLine(schema);
 
 var cleanedSchema = GraphQLSchemaCleaner.CleanGraphQLSchema(schema);
 
-File.WriteAllText(@"C:\HotChocolateGraphQL14\SchemaExtractor\Files\cleanedSchema.txt", cleanedSchema);
+File.WriteAllText(filePath + "cleanedSchema.txt", cleanedSchema);
 
 var fullSchema = (await (builder.Services
     .AddGraphQLServer()
@@ -40,5 +42,5 @@ var schemaJson = SchemaConverter.ConvertGraphQLSchemaToJson(fullSchema);
 foreach (var item in schemaJson)
 {
     var content = JsonSerializer.Serialize(item.Value, new JsonSerializerOptions { WriteIndented = true });
-    File.WriteAllText($"C:\\HotChocolateGraphQL14\\SchemaExtractor\\Files\\{item.Key}.json", content);
+    File.WriteAllText(filePath + $"{item.Key}.json", content);
 }

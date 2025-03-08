@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SchemaToFileExtractor\**" />
+    <Content Remove="SchemaToFileExtractor\**" />
+    <EmbeddedResource Remove="SchemaToFileExtractor\**" />
+    <None Remove="SchemaToFileExtractor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HotChocolate" Version="14.3.0" />
 	<PackageReference Include="HotChocolate.AspNetCore" Version="14.3.0" />
 	<PackageReference Include="HotChocolate.Data.EntityFramework" Version="14.3.0" />
