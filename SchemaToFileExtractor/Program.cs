@@ -2,8 +2,10 @@
 using HotChocolateV14.Queries;
 using HotChocolateV14.Repositories;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using SchemaToFileExtractor;
+using System.Reflection;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +14,18 @@ var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\
 
 builder.Services.ResolveRepositoryDependencies();
 
+var typeName = "CustomerQuery";
+
+var assembly = Assembly.Load("HotChocolateV14");
+
+Type type = assembly.GetTypes().ToList().First(x => x.Name == typeName);
+
+Console.WriteLine();
+
 var schema = (await (builder.Services
     .AddGraphQLServer()
     .AddQueryType(x => x.Name("Query"))
-    .AddTypeExtension<CustomerQuery>()
+    .AddTypeExtension(type)
     .AddFiltering()
     .AddSorting()
     .AddProjections()
