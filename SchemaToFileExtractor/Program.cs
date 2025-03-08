@@ -1,8 +1,6 @@
 ﻿using HotChocolate.Execution;
-using HotChocolateV14.Queries;
 using HotChocolateV14.Repositories;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using SchemaToFileExtractor;
 using System.Reflection;
