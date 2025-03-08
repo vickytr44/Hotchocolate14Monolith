@@ -19,9 +19,7 @@ builder.Services
     .AddDbContextPool<ApplicationContext>(
         options => options.UseSqlServer("Server=.;Database=DemoGraphQl;Trusted_Connection=True;TrustServerCertificate=True;"));
 
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<IBillRepository, BillRepository>();
+builder.Services.ResolveRepositoryDependencies();
 
 builder.Services
     .AddGraphQLServer()
@@ -34,9 +32,16 @@ builder.Services
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 
 app.MapGraphQL();
+
 app.Run();
