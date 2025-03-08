@@ -3,7 +3,7 @@ using HotChocolateV14.Queries;
 using HotChocolateV14.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using SchemaExtractor;
+using SchemaToFileExtractor;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);

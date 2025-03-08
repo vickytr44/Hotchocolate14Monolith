@@ -2,7 +2,7 @@
 using HotChocolate.Language;
 using HotChocolate.Types.Descriptors.Definitions;
 
-namespace SchemaExtractor;
+namespace SchemaToFileExtractor;
 
 public static class SchemaConverter
 {

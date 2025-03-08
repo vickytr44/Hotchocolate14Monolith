@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotChocolateV14", "HotChocolateV14.csproj", "{739A51DE-C518-4BDC-825D-C2BE99A25BC7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchemaExtractor", "SchemaExtractor\SchemaExtractor.csproj", "{A6693DAF-4268-4219-A02F-1C03B48E0B59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaToFileExtractor", "SchemaToFileExtractor\SchemaToFileExtractor.csproj", "{4DF55A03-0331-40A7-8D30-6021C2AB28EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{739A51DE-C518-4BDC-825D-C2BE99A25BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739A51DE-C518-4BDC-825D-C2BE99A25BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739A51DE-C518-4BDC-825D-C2BE99A25BC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6693DAF-4268-4219-A02F-1C03B48E0B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6693DAF-4268-4219-A02F-1C03B48E0B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6693DAF-4268-4219-A02F-1C03B48E0B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6693DAF-4268-4219-A02F-1C03B48E0B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF55A03-0331-40A7-8D30-6021C2AB28EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF55A03-0331-40A7-8D30-6021C2AB28EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF55A03-0331-40A7-8D30-6021C2AB28EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF55A03-0331-40A7-8D30-6021C2AB28EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
