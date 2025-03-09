@@ -13,7 +13,7 @@ public class AvailableOperatorQuery
     {
         var entityEnum = EnumExtensions.GetEnumValueFromDescription<Entity>(entity);
 
-        var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\Jsons\inputs.json";
+        var filePath = $"{FilePath.JsonFilePath}inputs.json";
         string json = File.ReadAllText(filePath);
 
         return GetOperatorsFor(json, entityEnum.ToString(), field);
