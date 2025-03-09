@@ -8,11 +8,14 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\";
+var schemaFilePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\CleanedSchema\";
+
+var filePath = @"C:\HotChocolateGraphQL14\HotChocolateV14\SchemaToFileExtractor\Files\Jsons\";
 
 builder.Services.ResolveRepositoryDependencies();
 
-var typeName = "CustomerQuery";
+var typeName = "BillQuery";
+var entity = "Bill";
 
 var assembly = Assembly.Load("HotChocolateV14");
 
@@ -34,7 +37,7 @@ Console.WriteLine(schema);
 
 var cleanedSchema = GraphQLSchemaCleaner.CleanGraphQLSchema(schema);
 
-File.WriteAllText(filePath + "cleanedSchema.txt", cleanedSchema);
+File.WriteAllText(schemaFilePath + entity.ToLower() + "s" + ".txt", cleanedSchema);
 
 var fullSchema = (await (builder.Services
     .AddGraphQLServer()

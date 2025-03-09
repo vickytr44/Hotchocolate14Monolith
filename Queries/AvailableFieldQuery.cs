@@ -1,6 +1,7 @@
 ﻿using HotChocolateV14.Constants;
 using HotChocolateV14.Entities;
 using HotChocolateV14.Utils;
+using System.Reflection;
 
 namespace HotChocolateV14.Queries
 {
@@ -13,24 +14,16 @@ namespace HotChocolateV14.Queries
         public IEnumerable<AvailableField> GetAvailableFields(string entity)
         {
             var entityEnum = EnumExtensions.GetEnumValueFromDescription<Entity>(entity);
-            return entityEnum switch
-            {
-                Entity.Customer => ReflectionHelper.GetFieldsAndTypes<Customer>(),
-                Entity.Bill => ReflectionHelper.GetFieldsAndTypes<Bill>(),
-                Entity.Account => ReflectionHelper.GetFieldsAndTypes<Account>(),
-                _ => [],
-            };
 
-            //string filePath = ".\\Jsons\\types.json";
-            //string json = File.ReadAllText(filePath);
+            Type type = Assembly.GetExecutingAssembly()
+                                  .GetTypes()
+                                  .First(t => t.Name == entityEnum.ToString() && t.Namespace == "HotChocolateV14.Entities");
 
-            //return entityEnum switch
-            //{
-            //    Entity.Customer => GetFieldsForEntity<Customer>(json, Entity.Customer.ToString()),
-            //    Entity.Bill => GetFieldsForEntity<Bill>(json, Entity.Bill.ToString()),
-            //    Entity.Account => GetFieldsForEntity<Account>(json, Entity.Account.ToString()),
-            //    _ => [],
-            //};
+            var result = typeof(ReflectionHelper).GetMethod(nameof(ReflectionHelper.GetFieldsAndTypes))
+                                                   .MakeGenericMethod(type).Invoke(null, null) as IEnumerable<AvailableField> ?? [];
+
+
+            return result;
         }
 
         //private static List<AvailableField> GetFieldsForEntity<T>(string json, string entity)

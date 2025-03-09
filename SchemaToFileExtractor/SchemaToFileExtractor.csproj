@@ -11,8 +11,4 @@
     <ProjectReference Include="..\HotChocolateV14.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
 </Project>
