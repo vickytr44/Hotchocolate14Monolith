@@ -7,36 +7,40 @@ using SchemaToFileExtractor;
 using System.Reflection;
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
+foreach(var entity in Enum.GetValues(typeof( Entity)).Cast<Entity>())
+{
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ResolveRepositoryDependencies();
+    builder.Services.ResolveRepositoryDependencies();
 
-var typeName = "CustomerQuery";
-var entity = "Customer";
+    var typeName = entity + "Query";
 
-var assembly = Assembly.Load("HotChocolateV14");
+    var assembly = Assembly.Load("HotChocolateV14");
 
-Type type = assembly.GetTypes().ToList().First(x => x.Name == typeName);
+    Type type = assembly.GetTypes().ToList().First(x => x.Name == typeName);
 
-Console.WriteLine();
+    Console.WriteLine();
 
-var schema = (await (builder.Services
-    .AddGraphQLServer()
-    .AddQueryType(x => x.Name("Query"))
-    .AddTypeExtension(type)
-    .AddFiltering()
-    .AddSorting()
-    .AddProjections()
-    .ModifyCostOptions(o => o.EnforceCostLimits = false)).BuildSchemaAsync()).Print();
+    var schema = (await (builder.Services
+        .AddGraphQLServer()
+        .AddQueryType(x => x.Name("Query"))
+        .AddTypeExtension(type)
+        .AddFiltering()
+        .AddSorting()
+        .AddProjections()
+        .ModifyCostOptions(o => o.EnforceCostLimits = false)).BuildSchemaAsync()).Print();
 
 
-Console.WriteLine(schema);
+    var cleanedSchema = GraphQLSchemaCleaner.CleanGraphQLSchema(schema);
 
-var cleanedSchema = GraphQLSchemaCleaner.CleanGraphQLSchema(schema);
+    File.WriteAllText(FilePath.SchemaFilePath + entity.ToString().ToLower() + "s" + ".txt", cleanedSchema);
+}
 
-File.WriteAllText(FilePath.SchemaFilePath + entity.ToLower() + "s" + ".txt", cleanedSchema);
+var fullSchemaBuilder = WebApplication.CreateBuilder(args);
 
-var fullSchema = (await (builder.Services
+fullSchemaBuilder.Services.ResolveRepositoryDependencies();
+
+var fullSchema = (await (fullSchemaBuilder.Services
     .AddGraphQLServer()
     .AddTypes()
     .AddFiltering()
