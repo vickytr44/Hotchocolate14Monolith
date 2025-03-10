@@ -1,5 +1,6 @@
 ﻿using HotChocolate.Data.Filters;
 using HotChocolateV14.Entities;
+using System.Linq;
 using System.Text.Json;
 
 namespace HotChocolateV14.Utils;
@@ -26,6 +27,7 @@ public static class JsonHelper
     public static List<AvailableOperator> ExtractAvailableOperators(string json, string filterInputName, string field)
     {
         var result = new List<AvailableOperator>();
+        List<string> ignoreOperators = ["and", "or"];
 
         using JsonDocument doc = JsonDocument.Parse(json);
         if (doc.RootElement.TryGetProperty(filterInputName, out JsonElement entityInputFilter))
@@ -36,6 +38,7 @@ public static class JsonHelper
                 {
                     foreach (var filterProp in operationInputFilter.EnumerateObject())
                     {
+                        if(!ignoreOperators.Contains(filterProp.Name))
                         result.Add(new AvailableOperator { Name = filterProp.Name });
                     }
                 }                    
