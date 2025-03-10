@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ResolveRepositoryDependencies();
 
-var typeName = "BillQuery";
-var entity = "Bill";
+var typeName = "CustomerQuery";
+var entity = "Customer";
 
 var assembly = Assembly.Load("HotChocolateV14");
 

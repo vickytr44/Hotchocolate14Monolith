@@ -77,12 +77,13 @@
     "endCursor": "String"
   },
   "Query": {
-    "bills": "BillsConnection",
+    "customers": "CustomersConnection",
     "accounts": "AccountsConnection",
     "availableEntities": "[AvailableEntity!]!",
     "availableRelatedEntities": "[AvailableEntity!]!",
     "availableFields": "[AvailableField!]!",
     "availableOperators": "[AvailableOperator!]!",
-    "customers": "CustomersConnection"
+    "bills": "BillsConnection",
+    "cleanedSchema": "String!"
   }
 }
