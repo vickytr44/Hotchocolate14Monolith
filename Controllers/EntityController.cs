@@ -91,5 +91,62 @@ namespace HotChocolateV14.Controllers
                 return StatusCode(500, $"An error occurred while getting related entities: {ex.Message}");
             }
         }
+
+        [HttpGet("{entity}/fields")]
+        [SwaggerOperation(
+            Summary = "Get entity fields",
+            Description = "Gets all primitive fields (non-entity fields) for the specified entity type"
+        )]
+        public ActionResult<IEnumerable<string>> GetEntityFields([SwaggerParameter(Description = "The entity type")] Entity entity)
+        {
+            try
+            {
+                if (!System.IO.File.Exists(_typesJsonPath))
+                {
+                    return StatusCode(500, "types.json file not found");
+                }
+
+                var jsonContent = System.IO.File.ReadAllText(_typesJsonPath);
+                var types = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(jsonContent);
+
+                if (types == null)
+                {
+                    return StatusCode(500, "Failed to parse types.json");
+                }
+
+                var entityName = entity.ToString();
+                
+                if (!types.ContainsKey(entityName))
+                {
+                    return NotFound($"Entity '{entityName}' not found");
+                }
+
+                var entityFields = types[entityName];
+                var primitiveFields = new List<string>();
+
+                foreach (var field in entityFields)
+                {
+                    var fieldType = field.Value.TrimEnd('!'); // Remove non-null indicator
+                    if (fieldType.StartsWith("["))
+                    {
+                        // Handle array types, extract the type
+                        fieldType = fieldType.Trim('[', ']');
+                        fieldType = fieldType.TrimEnd('!');
+                    }
+
+                    // If the field type doesn't exist in our types dictionary, it's a primitive type
+                    if (!types.ContainsKey(fieldType))
+                    {
+                        primitiveFields.Add(field.Key.ToLower());
+                    }
+                }
+
+                return Ok(primitiveFields);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while getting entity fields: {ex.Message}");
+            }
+        }
     }
 }
