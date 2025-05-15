@@ -56,3 +56,7 @@ foreach (var item in schemaJson)
     var content = JsonSerializer.Serialize(item.Value, new JsonSerializerOptions { WriteIndented = true });
     File.WriteAllText(FilePath.JsonFilePath + $"{item.Key}.json", content);
 }
+
+var cleanedFullSchema = GraphQLSchemaCleaner.CleanGraphQLSchema(fullSchema);
+
+File.WriteAllText(FilePath.SchemaFilePath + "fullSchema" + ".txt", cleanedFullSchema);
