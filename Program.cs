@@ -1,7 +1,9 @@
 using HotChocolateV14;
 using HotChocolateV14.Repositories;
+using HotChocolateV14.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,13 +33,20 @@ builder.Services
     .AddPagingArguments()
     .ModifyCostOptions(o => o.EnforceCostLimits = false);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 // Add Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotChocolate API", Version = "v1" });
+    c.EnableAnnotations();
+    c.SchemaFilter<EnumSchemaFilter>();
+    c.UseInlineDefinitionsForEnums();
 });
 
 var app = builder.Build();
