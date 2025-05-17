@@ -4,7 +4,7 @@ using HotChocolateV14.Utils;
 
 namespace HotChocolateV14.Queries;
 
-[QueryType]
+//[QueryType]
 public class AvailableOperatorQuery
 {
     [UseFiltering]

@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace HotChocolateV14.Queries
 {
-    [QueryType]
+    //[QueryType]
     public class AvailableEntityQuery
     {
         //[UseProjection]

@@ -3,7 +3,7 @@ using HotChocolateV14.Utils;
 
 namespace HotChocolateV14.Queries;
 
-[QueryType]
+//[QueryType]
 public class SchemaQuery
 {
     public string GetCleanedSchema(Entity schemaName)
