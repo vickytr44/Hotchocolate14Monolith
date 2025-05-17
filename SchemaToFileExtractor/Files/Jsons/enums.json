@@ -3,11 +3,6 @@
     "DOMESTIC",
     "COMMERCIAL"
   ],
-  "Entity": [
-    "ACCOUNT",
-    "CUSTOMER",
-    "BILL"
-  ],
   "Month": [
     "JANUARY",
     "FEBRUARY",

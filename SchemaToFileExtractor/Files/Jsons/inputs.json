@@ -24,34 +24,6 @@
     "in": "[AccountType!]",
     "nin": "[AccountType!]"
   },
-  "AvailableEntityFilterInput": {
-    "and": "[AvailableEntityFilterInput!]",
-    "or": "[AvailableEntityFilterInput!]",
-    "id": "StringOperationFilterInput",
-    "value": "StringOperationFilterInput"
-  },
-  "AvailableEntitySortInput": {
-    "id": "SortEnumType",
-    "value": "SortEnumType"
-  },
-  "AvailableFieldFilterInput": {
-    "and": "[AvailableFieldFilterInput!]",
-    "or": "[AvailableFieldFilterInput!]",
-    "name": "StringOperationFilterInput",
-    "type": "StringOperationFilterInput"
-  },
-  "AvailableFieldSortInput": {
-    "name": "SortEnumType",
-    "type": "SortEnumType"
-  },
-  "AvailableOperatorFilterInput": {
-    "and": "[AvailableOperatorFilterInput!]",
-    "or": "[AvailableOperatorFilterInput!]",
-    "name": "StringOperationFilterInput"
-  },
-  "AvailableOperatorSortInput": {
-    "name": "SortEnumType"
-  },
   "BillFilterInput": {
     "and": "[BillFilterInput!]",
     "or": "[BillFilterInput!]",
