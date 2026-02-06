@@ -1,4 +1,5 @@
 using HotChocolateV14;
+using HotChocolateV14.JsonToLinqConverter;
 using HotChocolateV14.Repositories;
 using HotChocolateV14.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,8 @@ builder.Services
         options => options.UseSqlServer("Server=.;Database=DemoGraphQl;Trusted_Connection=True;TrustServerCertificate=True;"));
 
 builder.Services.ResolveRepositoryDependencies();
+
+builder.Services.AddScoped<IJsonToLinqQueryBuilder, JsonToLinqQueryBuilder>();
 
 builder.Services
     .AddGraphQLServer()

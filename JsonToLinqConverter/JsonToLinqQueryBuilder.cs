@@ -2,7 +2,7 @@
 
 namespace HotChocolateV14.JsonToLinqConverter;
 
-public sealed class JsonToLinqQueryBuilder
+public sealed class JsonToLinqQueryBuilder : IJsonToLinqQueryBuilder
 {
     private readonly ApplicationContext _dbContext;
 
