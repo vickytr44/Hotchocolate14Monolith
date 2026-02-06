@@ -10,10 +10,10 @@ public static class NavigationResolver
         Type sourceEntity,
         string targetEntityName)
     {
-        var sourceEntityType = dbContext.Model.FindEntityType(sourceEntity)
-            ?? throw new InvalidOperationException("Source entity not found");
+        var entityType = dbContext.Model.FindEntityType(sourceEntity)
+            ?? throw new InvalidOperationException($"Entity '{sourceEntity.Name}' not found");
 
-        var navigation = sourceEntityType.GetNavigations()
+        var navigation = entityType.GetNavigations()
             .FirstOrDefault(n =>
                 string.Equals(
                     n.TargetEntityType.ClrType.Name,
@@ -27,3 +27,5 @@ public static class NavigationResolver
         return navigation;
     }
 }
+
+

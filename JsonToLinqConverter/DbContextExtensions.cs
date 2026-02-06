@@ -6,6 +6,7 @@ public static class DbContextExtensions
 {
     public static IQueryable GetQueryable(this ApplicationContext context, Type entityType)
     {
+        // DbContext.Set<TEntity>().AsQueryable()
         var method = typeof(ApplicationContext)
             .GetMethod(nameof(ApplicationContext.Set), Type.EmptyTypes)!
             .MakeGenericMethod(entityType);
