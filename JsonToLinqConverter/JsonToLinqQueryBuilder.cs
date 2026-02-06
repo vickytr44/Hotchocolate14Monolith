@@ -19,6 +19,12 @@ public sealed class JsonToLinqQueryBuilder : IJsonToLinqQueryBuilder
 
         var query = _dbContext.GetQueryable(entityType);
 
+        query = WhereBuilder.ApplyWhere(
+                    query,
+                    entityType,
+                    request.AndConditions,
+                    _dbContext);
+
         query = ProjectionBuilder.ApplySelect(
                     query,
                     entityType,
